@@ -1,0 +1,70 @@
+body {
+    background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.card {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(160deg, #FFEFBA, #FFFFFF);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #4b0082; /* Indigo color for the header */
+}
+
+.forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forecast-item {
+    background: linear-gradient(to bottom, #4CA1AF, #F8FFAE);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 300px; /* Limit the width */
+    text-align: center;
+}
+
+.forecast-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-item img {
+    width: 50px; /* Adjust icon size */
+    height: 50px;
+}
+
+.details {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+}
+
+.details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #555; /* Slightly darker text */
+}
+
+/* Animation for details */
+.details.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

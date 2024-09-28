@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-Day Weather Forecast</title>
+    <link rel="stylesheet" href="14forecast.css"> <!-- Link to your existing CSS -->
+  
+</head>
+<body>
+    
+    <div class="card">
+        <h2 id="city-name-header">14-Day Weather Forecast for City</h2>
+        <div class="forecast" id="forecast"></div>
+    </div>
+
+    <script>
+        const apiKey = "b4fcc86269eb4e19ac2140532242709"; // Replace with your WeatherAPI key
+
+        // Get the city name from localStorage
+        const city = localStorage.getItem('selectedCity');
+
+        async function fetchForecast(city) {
+            const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=14`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                displayForecast(data);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        function displayForecast(data) {
+            const forecastContainer = document.getElementById("forecast");
+            forecastContainer.innerHTML = ""; // Clear previous forecasts
+            document.getElementById("city-name-header").textContent = `14-Day Weather Forecast for ${data.location.name}`;
+
+            data.forecast.forecastday.forEach(day => {
+                const forecastItem = document.createElement("div");
+                forecastItem.classList.add("forecast-item");
+
+                const date = new Date(day.date);
+                const options = { weekday: 'long', month: 'long', day: 'numeric' };
+                const dayName = date.toLocaleDateString('en-US', options);
+
+                forecastItem.innerHTML = `
+                    <h3>${dayName}</h3>
+                    <img src="${day.day.condition.icon}" alt="${day.day.condition.text}">
+                    <p>${day.day.avgtemp_c}°C</p>
+                    <p class="condition">${day.day.condition.text}</p>
+                    <div class="details">
+                        <p>Humidity: ${day.day.avghumidity}%</p>
+                        <p>Wind Speed: ${day.day.maxwind_kph} km/h</p>
+                    </div>
+                `;
+
+                // Toggle details on click
+                forecastItem.addEventListener("click", () => {
+                    const detailsDiv = forecastItem.querySelector(".details");
+                    detailsDiv.classList.toggle("show");
+                });
+
+                forecastContainer.appendChild(forecastItem);
+            });
+        }
+
+        // Fetch the forecast for the city
+        fetchForecast(city);
+    </script>
+</body>
+</html>
+
+
+
+
