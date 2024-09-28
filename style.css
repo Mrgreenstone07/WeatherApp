@@ -1,25 +1,46 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
-body {
-    background: #222;
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.background-video {
+    position: fixed; /* Fixed positioning for the video */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure the video is behind other content */
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire area */
 }
 
 .card {
+    position: absolute; /* Change to absolute positioning */
+    top: 50%; /* Center the card vertically */
+    left: 50%; /* Center the card horizontally */
+    transform: translate(-50%, -50%); /* Adjust for width and height */
+    z-index: 1; /* Make sure the card is above the video */
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #00feba, #5b548a);
-    color: #fff;
-    margin: 100px auto 0;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent for readability */
+    color: #222;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
+/* Other styles... */
 .search {
     width: 100%;
     display: flex;
@@ -41,11 +62,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-.search input:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 5px rgba(0, 184, 255, 0.5);
-}
-
 .search button {
     border: 0;
     outline: 0;
@@ -60,100 +76,19 @@ body {
     transition: transform 0.3s ease;
 }
 
-.search button img {
-    width: 20px;  /* Adjust width */
-    height: 20px; /* Adjust height */
-    transition: transform 0.3s ease;
-}
-
-.search button:hover img {
-    transform: scale(1.2); /* Slightly enlarge on hover */
-}
-
-
 .loading {
     color: #fff;
     font-size: 20px;
     margin-top: 20px;
 }
 
-.forecast {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 15px;
-}
-
-.forecast-item {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid transparent; /* Use transparent border to maintain layout */
-    margin: 5px 0;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #00feba, #5b548a); /* Permanent gradient */
-    color: #fff; /* Text color for better contrast */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-}
-
-.forecast-item:hover {
-    transform: scale(1.05); /* Slightly scale up on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for emphasis */
-}
-
-
-.forecast-item img {
-    width: 50px;
-    height: auto;
-}
-
-.forecast-item h3 {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-
-
-.details {
-    margin-top: 10px;
-    color: #666;
-}
-
-
-.col {
-    text-align: center;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-.card h1, .card h2 {
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 600px) {
-    .card {
-        padding: 20px;
-    }
-
-    .search input {
-        padding: 8px 15px;
-        font-size: 16px;
-    }
-
-    .search button {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/* Centering the button */
 #show-forecast-button {
     display: block;
     margin: 20px auto; /* Center the button with top and bottom margin */
     padding: 10px 20px; /* Add some padding */
-    background: linear-gradient(to right, white, lightblue); /* Add a gradient background */
+    background: linear-gradient(to right, white, rgb(32, 131, 164)); /* Add a gradient background */
     border: none; /* Remove default border */
-    border-radius: 5px; /* Add rounded corners */
+    border-radius:10px; /* Add rounded corners */
     cursor: pointer; /* Change cursor to pointer */
     font-size: 16px; /* Increase font size */
     color: #333; /* Change text color */
@@ -165,5 +100,11 @@ body {
     background: linear-gradient(to right, lightblue, white); /* Change gradient on hover */
 }
 
+.wind, .humidity{
+    font-weight: bold;
+    
+}
 
 
+
+/* Continue with your existing styles... */

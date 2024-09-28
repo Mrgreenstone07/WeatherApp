@@ -4,20 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>14-Day Weather Forecast</title>
-    <link rel="stylesheet" href="14forecast.css"> <!-- Link to your existing CSS -->
-  
+    <link rel="stylesheet" href="14forecast.css">
 </head>
 <body>
-    
+    <div class="background-video">
+        <video autoplay loop muted>
+            <source src="images/856463-hd_1920_1080_30fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <div class="card">
         <h2 id="city-name-header">14-Day Weather Forecast for City</h2>
         <div class="forecast" id="forecast"></div>
     </div>
 
+    <div class="forecast-item">
+        <h3>Day 1</h3>
+        <p class="details">Temperature: 25°C</p>
+        <p class="details">Humidity: 60%</p>
+    </div>
+    <div class="forecast-item">
+        <h3>Tuesday, October 1</h3>
+        <p class="details">Patchy rain nearby</p>
+        <p class="temperature">28.2°C</p>
+        <p class="details">Patchy rain nearby</p>
+    </div>
+    
+    
+
     <script>
         const apiKey = "b4fcc86269eb4e19ac2140532242709"; // Replace with your WeatherAPI key
-
-        // Get the city name from localStorage
         const city = localStorage.getItem('selectedCity');
 
         async function fetchForecast(city) {
@@ -65,6 +82,7 @@
                     const detailsDiv = forecastItem.querySelector(".details");
                     detailsDiv.classList.toggle("show");
                 });
+                
 
                 forecastContainer.appendChild(forecastItem);
             });
@@ -75,6 +93,7 @@
     </script>
 </body>
 </html>
+
 
 
 

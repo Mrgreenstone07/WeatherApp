@@ -1,24 +1,51 @@
-body {
-    background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
-    font-family: Arial, sans-serif;
+/* General body and HTML styles */
+body, html {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    height: 100%;
+    /* overflow: hidden; Prevents scrolling for the entire viewport */
+    font-family: Arial, sans-serif; /* Set a default font */
 }
 
+/* Background video styles */
+.background-video {
+    position: fixed; /* Use fixed positioning */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; Hides overflow from the video */
+    z-index: 0; /* Ensure the video is behind other content */
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire area */
+}
+
+/* Card styles */
 .card {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: linear-gradient(160deg, #FFEFBA, #FFFFFF);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative; /* Ensure it's above the video */
+    z-index: 1; /* Make sure the card is above the video */
+    width: 90%;
+    max-width: 470px;
+    /* background: rgba(255, 255, 255, 0.8); Semi-transparent background for readability */
+    color: #222;
+    margin: 100px auto; /* Center the card */
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
+/* Header styles */
 h2 {
     text-align: center;
-    color: #4b0082; /* Indigo color for the header */
+    color: #f8f6f9; /* Indigo color for the header */
 }
 
+/* Forecast styles */
 .forecast {
     display: flex;
     flex-direction: column;
@@ -26,8 +53,8 @@ h2 {
 }
 
 .forecast-item {
-    background: linear-gradient(to bottom, #4CA1AF, #F8FFAE);
-    border-radius: 10px;
+    background: linear-gradient(to bottom, #bdc3c7, #2c3e50);
+    border-radius: 20px;
     padding: 20px;
     margin: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -42,20 +69,22 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.forecast-item img {
-    width: 50px; /* Adjust icon size */
-    height: 50px;
+.details {
+color: #bdc3c7; /* Change the text color to tomato */
+    font-size: 14px; /* Adjust the font size if needed */
 }
 
-.details {
+
+/* Details section styles */
+/* .details {
     display: none; /* Initially hidden */
-    margin-top: 10px;
-}
+    /* margin-top: 10px;
+} */ */
 
 .details p {
     margin: 5px 0;
     font-size: 0.9em;
-    color: #555; /* Slightly darker text */
+  color: #f8f6f9;/* Slightly darker text */
 }
 
 /* Animation for details */
