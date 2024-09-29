@@ -45,7 +45,7 @@
     </style> -->
 </head>
 <body>
-    <div class="background-video"></div>
+    <div class="background-video">
         <video autoplay loop muted>
             <source src="images/1893623-uhd_3840_2160_25fps.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -88,6 +88,22 @@
         <button id="show-forecast-button">View 14-Day Forecast for City</button>
     </div>
 
+    
+     <!-- Contact and About Us buttons -->
+<div class="footer-buttons">
+    <!-- Link to contact.html -->
+    <a href="contact.html" class="contactUs">
+        <img src="images/contactus2.png" alt="Contact Us" class="footer-gif">
+    </a>
+   <!-- About Us button link -->
+<a href="about.html">
+    <img src="images/aboutuslogo.png" alt="About Us" class="footer-gif">
+</a>
+</div>
+
+
+    
+
     <script>
         const apiKey = "b4fcc86269eb4e19ac2140532242709"; // Replace with your WeatherAPI key
 
@@ -97,6 +113,17 @@
                 checkWeather(cityInput);
             } else {
                 alert("Please enter a city name.");
+            }
+        });
+          // New event listener for Enter key
+          document.getElementById("city-input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                const cityInput = document.getElementById("city-input").value.trim();
+                if (cityInput) {
+                    checkWeather(cityInput);
+                } else {
+                    alert("Please enter a city name.");
+                }
             }
         });
 
@@ -139,7 +166,22 @@
             const currentCity = document.getElementById("city-name").textContent;
             localStorage.setItem('selectedCity', currentCity);
             window.location.href = '14day-forecast.html'; // Redirect to the 14-day forecast page
+
+            
         });
+
+        // document.querySelector('.phone').addEventListener('click', () => {
+        //     const phoneNumber = document.getElementById('phone-number');
+        //     const emailAddress = document.getElementById('email-address');
+        //     const isHidden = phoneNumber.style.display === 'none';
+
+        //     // Toggle visibility
+        //     phoneNumber.style.display = isHidden ? 'block' : 'none';
+        //     emailAddress.style.display = isHidden ? 'block' : 'none';
+        // });
+
+      
+
     </script>
 </body>
 </html>

@@ -15,10 +15,22 @@
     </div>
 
     <div class="card">
+        <img id="back-image" src="images/gif1.gif" alt="Go back" title="Go back">
         <h2 id="city-name-header">14-Day Weather Forecast for City</h2>
         <div class="forecast" id="forecast"></div>
     </div>
-
+    <div class="forecast-item">
+        <h3>${dayName}</h3>
+        <img src="${day.day.condition.icon}" alt="${day.day.condition.text}">
+        <p>${day.day.avgtemp_c}°C</p>
+        <p class="condition">${day.day.condition.text}</p>
+        <div class="details">
+            <p>Humidity: ${day.day.avghumidity}%</p>
+            <p>Wind Speed: ${day.day.maxwind_kph} km/h</p>
+        </div>
+        <div class="hourly-data" style="display: none;"></div> <!-- Add this line -->
+    </div>
+    
     <div class="forecast-item">
         <h3>Day 1</h3>
         <p class="details">Temperature: 25°C</p>
@@ -29,8 +41,8 @@
         <p class="details">Patchy rain nearby</p>
         <p class="temperature">28.2°C</p>
         <p class="details">Patchy rain nearby</p>
-    </div>
-    
+    </div> 
+     
     
 
     <script>
@@ -75,21 +87,46 @@
                         <p>Humidity: ${day.day.avghumidity}%</p>
                         <p>Wind Speed: ${day.day.maxwind_kph} km/h</p>
                     </div>
+                     <div class="hourly-data" style="display: none;"></div> 
                 `;
 
                 // Toggle details on click
-                forecastItem.addEventListener("click", () => {
-                    const detailsDiv = forecastItem.querySelector(".details");
-                    detailsDiv.classList.toggle("show");
-                });
-                
+        forecastItem.addEventListener("click", async () => {
+            const hourlyData = await fetchHourlyData(index); // Fetch hourly data for the clicked day
+            const hourlyContainer = forecastItem.querySelector(".hourly-data");
+
+            // Display hourly data
+            hourlyContainer.innerHTML = hourlyData.map(hour => `
+                <div class="hour">
+                    <span>${new Date(hour.time).getHours()}:00 - ${hour.temp_c}°C</span>
+                </div>
+            `).join("");
+            hourlyContainer.style.display = hourlyContainer.style.display === 'none' ? 'block' : 'none';
+        });
 
                 forecastContainer.appendChild(forecastItem);
             });
         }
+        function generateHourlyData(hours) {
+            return hours.map(hour => `
+                <div class="hour">${hour.time.split(' ')[1]} - ${hour.temp_c}°C</div>
+            `).join('');
+        }
 
+        function toggleHourlyData(element) {
+            const hourlyData = element.querySelector('.hourly-data');
+            hourlyData.style.display = hourlyData.style.display === 'none' || hourlyData.style.display === '' ? 'flex' : 'none';
+        }
+        
+        document.getElementById("back-image").addEventListener("click", () => {
+        window.history.back(); // Go to the previous page
+    });
+      
+
+    
         // Fetch the forecast for the city
         fetchForecast(city);
+        
     </script>
 </body>
 </html>

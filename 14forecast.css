@@ -97,3 +97,22 @@ color: #bdc3c7; /* Change the text color to tomato */
     from { opacity: 0; }
     to { opacity: 1; }
 }
+.hourly-data {
+    display: none; /* Initially hide the hourly data */
+    flex-direction: column; /* Stack hourly data vertically */
+    margin-top: 10px; /* Add some spacing */
+}
+#back-image {
+    position: fixed; /* Use fixed positioning */
+    top: 20px; /* Adjust as needed */
+    left: 20px; /* Position in the top left corner */
+    cursor: pointer;
+    width: 80px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    opacity: 0.5; /* Semi-transparent */
+    border-radius: 20%;
+}
+
+#back-image:hover {
+    opacity: 1; /* Fully opaque on hover */
+}
