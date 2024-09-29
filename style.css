@@ -85,7 +85,7 @@ video {
 
 #show-forecast-button {
     display: block;
-    margin: 20px auto; /* Center the button with top and bottom margin */
+    margin: 15px auto; /* Center the button with top and bottom margin */
     padding: 10px 20px; /* Add some padding */
     background: linear-gradient(to right, white, rgb(32, 131, 164)); /* Add a gradient background */
     border: none; /* Remove default border */
